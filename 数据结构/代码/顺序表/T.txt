@@ -1,0 +1,186 @@
+package seqlist;
+
+
+
+public class Squlist<T> {
+	private T[] data;
+	private int count;
+	private static final int maxSize = 10;
+
+	public Squlist() {
+		
+		this(maxSize);
+	}
+
+	public Squlist(int x) {
+		if (x<1) {
+			System.out.println("输入错误");
+			System.exit(1);
+		}
+		count = 0;
+		data = (T[])new Object [x];
+	}
+
+	public boolean add(T x, int pos) {			//插入方法
+		if (pos < 1 || pos > count + 1) {			//1.判断pos输入是否合法
+			System.out.println("pos error");		//不合法输出错误
+			return false;							//最后返回false	!!	
+		}
+		if (isFull()) {								//2.再判断data的数组是不是已满
+			T[] p=(T[])new Object [count*2];									
+			for (int i = 0; i < count; i++) {
+				p[i]=data[i];
+			}
+			data=p;
+		}
+		
+		for (int i = count; i >=pos; i--) {			//3.insert方法，往后移
+			data[i]=data[i-1];
+		}
+		data[pos-1]=x;								//将x付给插入位置的值
+		count++;									//长度+1
+		return true;								//返回Boolean类型	！！				
+	}
+
+//	public boolean add(int x) {						//明天测试一下
+//
+//	
+//		if (isFull()) {								//2.再判断data的数组是不是已满
+//			System.out.println(" data is full");
+//			return false;							//返回ture		！！
+//		}
+//		
+//		data[count]=x;
+//		return true;
+//
+//	}
+
+	public T del(int pos) {
+		if (isEmpty()) {
+			System.out.println("data is empty");
+			return null;
+		}else {
+			if (pos<1&&pos>count) {
+				System.out.println("pos值不合法");
+			}
+		}
+		T x=data[pos-1];
+		
+		for (int i =pos ; i <= count; i++) {
+			data[i-1]=data[i];
+		}
+		count--;
+		return x;
+	}
+
+	public boolean modify(int pos , T x) {
+if (isEmpty()) {
+	System.out.println("data is empty");
+	return false;
+}
+if (pos<1&&pos>count) {
+	System.out.println("pos值错误");
+	return false;
+}
+data[pos-1]=x;
+return true;
+
+	}
+
+	public int find(T obj) {
+		if (isEmpty()) {
+			System.out.println("data is empty");
+			return -1;}
+			for (int i = 0; i < count; i++) {
+				if (data[i].equals(obj)) {
+					return  i+1;
+	}
+	
+	}
+		return -1;
+	}
+
+	public T get(int pos) {
+		if (isEmpty()) {
+			System.out.println("data is empty");
+			return null;}
+		if (pos<1&&pos>count) {
+			System.out.println("pos值错误");
+			return null;
+		}
+		return data[pos-1];
+		
+		
+	}
+	
+	public boolean isEmpty() {
+//if (count==data.length) {
+//	return true;
+//}else {
+//	return
+//		false;
+//}
+		return count == 0;	
+	}
+
+	public boolean isFull() {
+		
+		return count == data.length;
+	}
+
+//	public boolean Rankcheck() {
+//		
+//	}
+	public int size() {
+return count;
+	}
+
+	public void clear() {
+count=0;
+for (int i = 0; i < count; i++) {
+	data[i]=null;
+}
+	}
+
+	public void nextOder() {
+		if (isEmpty()) {
+			System.out.println("data is empty");
+			}
+		
+		for (int i = 0; i < count; i++) {
+			System.out.print(data[i]+" ");
+		}
+	}
+
+	public static void main(String[] args) {
+		Squlist <Integer> L = new Squlist<Integer>();
+		for (int i = 1; i < 5; i++) {
+			L.add(i*2,i);
+		}
+		System.out.println("顺序表中的元素有：");
+		L.nextOder();
+		L.add(6,5);
+		System.out.println(" ");
+		System.out.println("增加元素后的数组：");//增加第五位元素，位6
+		L.nextOder();
+		L.del(2);
+		System.out.println(" ");
+		System.out.println("删除元素后的数组：");//删除第二位元素
+		L.nextOder();
+		System.out.println(" ");
+		System.out.println("修改元素后的数组：");//将第三位元素改为9
+		L.modify(3, 9);
+		L.nextOder();
+		int m=0;
+		m=L.find(9);
+		System.out.println(" ");
+		System.out.println("元素9在线性表中的位置是："+m);
+		
+		int a=0;
+		a=L.get(4);
+		System.out.println("获取第四个位置的元素："+a);
+		System.out.println("线性表的长度是："+L.size());
+		
+//	list1.isEmpty();
+	}
+}

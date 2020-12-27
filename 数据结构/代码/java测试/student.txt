@@ -1,0 +1,81 @@
+package homework.chap3;
+
+import java.util.Date;
+
+public class Student
+	private String sNo;
+	private String name;
+	private String major;
+	private String school;
+	private Date birthDate;
+	private String instructor;
+	
+	public Student() {
+	}
+	
+	public Student(String sNo, String name,String major, Date birthDate) {
+		this.sNo = sNo;
+		this.name = name;
+		this.major = major;
+		this.birthDate = birthDate;
+		pintInfo();
+		
+	}
+	
+	public String getsNo() {
+		return sNo;
+	}
+	public void setsNo(String sNo) {
+		this.sNo = sNo;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major = major;
+	}
+	public String getSchool() {
+		return school;
+	}
+	public void setSchool(String school) {
+		this.school = school;
+	}
+	public Date getBirthDate() {
+		return birthDate;
+	}
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+	public String getInstructor() {
+		return instructor;
+	}
+	public void setInstructor(String instructor) {
+		this.instructor = instructor;
+	}
+	
+	int getAge() {
+		int age;
+		long ms = System.currentTimeMillis() -  getBirthDate().getTime();
+		age = (int)(ms*1.0/1000/3600/24/365);
+		return age;
+	}
+	
+	void pintInfo() {
+		String info = "I'm " + name +" \n" +  "I'm "  + this.getAge() + " years old";
+		System.out.println(info);
+	}
+	
+	public static void main(String[] args) {
+		Student s1 = new Student("B19041701","鄢华青","数据科学与大数据技术",new Date(102, 6, 1) );
+//		s1.setBirthDate(new Date(102,5,1));
+//		s1.setName("张三");
+//		System.out.println(s1.getAge());
+//		s1.pintInfo();
+	}
+}

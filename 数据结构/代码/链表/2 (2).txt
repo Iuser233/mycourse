@@ -1,0 +1,92 @@
+package linklist;
+
+import java.awt.List;
+
+import org.omg.CORBA.PUBLIC_MEMBER;
+
+public class singlelinklist {		//定义一个链表（类）
+	private int size;				//表的大小
+	private Node  head ;			//定义一个表头
+	
+	private static class Node{					//内部类  节点  node是引用类型 
+		int data;								//data》学生，姓名，成绩。。。。
+		Node next;								//指向下一个node节点，所以用node型
+		public Node(int data, Node next) {			
+			super();					
+			this.data = data;				
+			this.next = next;				
+			
+		}
+		public Node (Node x)
+		{
+			this.next=x;				//next为x下一个节点
+		}
+		}
+	
+	public singlelinklist() {		//构造方法  表的初始化 带头结节点方法
+		size=0;						//无参数
+		head = new Node(null);		//node方法
+	}
+	
+								
+	public void addtotial( int x) {		//1.尾插法	
+		Node xnode=new Node(x,null);
+		Node p=head;					//指针
+		while(p.next!=null)
+		{
+			p=p.next;
+			
+		}
+		xnode.next=p.next;				//可写可不写可
+		p.next=xnode;
+		size++;
+	}
+	
+	
+	public void addtohead( int x) {		//头插法
+		Node xnode =new Node(x,null);
+	xnode.next=head.next;
+		head.next=xnode;
+	}
+	public void del() {
+		
+		
+	}
+	public void clear() {
+		
+	}
+	
+	public Node getHead() {
+	return head;
+	}
+	
+
+	public void printAll() {
+		Node pNode=head.next;
+		while(pNode!=null)
+		{
+			System.out.println(pNode.data+"");
+		pNode=pNode.next;
+		}
+	
+	
+	}
+	
+	
+	
+	public singlelinklist(int size, Node head) {
+		super();
+		this.size = size;
+		this.head = head;
+	}
+
+	
+public static void main(String[] args) {
+	// TODO Auto-generated method stub
+singlelinklist list1=new singlelinklist();
+for (int i = 1; i < 6; i++) {
+	list1.addtotial(i*3);	
+}
+list1.printAll();
+	}
+}

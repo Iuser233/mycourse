@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class three2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+Scanner input = new Scanner(System.in);
+
+int [] nums = new int[10];
+for (int i = 0; i < nums.length; i++) {
+	nums [i] = input.nextInt();
+}
+int smallnum=nums[0];
+int bignum=nums[0];
+double ave=0;
+double sum=0;
+for (int i = 0; i < nums.length; i++) {
+	if(smallnum>nums[i]) {
+	smallnum=nums[i];}
+	if(bignum<nums[i]) {
+		bignum=nums[i];}
+	sum +=nums[i];
+}
+
+ave=sum/nums.length;
+System.out.println("min = "+smallnum);
+System.out.println("max = "+bignum);
+System.out.println("ave = "+ave);
+	}
+	
+	}
+
+
